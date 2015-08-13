@@ -1,0 +1,33 @@
+{
+  "name": "lrm-google",
+  "version": "1.0.0",
+  "authors": [
+    "kahkhang <kahkhang@gmail.com>"
+  ],
+  "description": "Support for Google Directions API in Leaflet Routing Machine",
+  "main": "lrm-google.js",
+  "keywords": [
+    "leaflet",
+    "routing",
+    "matchine",
+    "lrm",
+    "google",
+    "directions",
+    "api"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kahkhang/lrm-google",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "index.html"
+  ],
+  "dependencies": {
+    "polyline": "~0.2.0",
+    "leaflet-routing-machine": "~2.3.0",
+    "leaflet": "~0.7.3"
+  }
+}
