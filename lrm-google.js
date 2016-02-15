@@ -1,4 +1,3 @@
-var directionsService = new google.maps.DirectionsService();
 L.Routing = L.Routing || {};
 L.Routing.Google = L.Class.extend({
     options: {
@@ -7,6 +6,7 @@ L.Routing.Google = L.Class.extend({
         provideRouteAlternatives: true
     },
     initialize: function(options) {
+    	this.directionsService = new google.maps.DirectionsService();
         L.Util.setOptions(this, options);
     },
     _flatten: function(arrs) {
@@ -40,7 +40,7 @@ L.Routing.Google = L.Class.extend({
                 });
         }
         
-        directionsService.route(directions, function(result, status) {
+        this.directionsService.route(directions, function(result, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             callback.call(context || callback, null, result.routes.map(function(route) {
                 var iroute = {}, i, j, step;
