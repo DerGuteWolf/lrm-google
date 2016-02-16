@@ -41,7 +41,6 @@ L.Routing.Google = L.Class.extend({
                   stopover: false
                 };
             });
-        }
         
         this.directionsService.route(directions, function(result, status) {
           if (status == google.maps.DirectionsStatus.OK) {
