@@ -1,12 +1,12 @@
 L.Routing = L.Routing || {};
 L.Routing.Google = L.Class.extend({
-    options: {},
+    //options: {},
     initialize: function(options) {
-    	this.options = {
+    	this.options =  L.extend(this.options, {
            travelMode: google.maps.TravelMode.DRIVING,
            unitSystem: google.maps.UnitSystem.METRIC,
            provideRouteAlternatives: true
-    	};
+    	});
     	this.directionsService = new google.maps.DirectionsService();
         L.Util.setOptions(this, options);
     },
@@ -28,20 +28,19 @@ L.Routing.Google = L.Class.extend({
 		},
     route: function(waypoints, callback, context, options) {
         var that = this;
-        var directions = this.options;
+        var directions =  L.extend({}, this.options);
         if (options.geometryOnly) {
           directions.provideRouteAlternatives = false;
         }
         directions.origin = waypoints[0].latLng.lat + ',' + waypoints[0].latLng.lng;
         directions.destination = waypoints[waypoints.length - 1].latLng.lat + ',' + waypoints[waypoints.length - 1].latLng.lng;
-        if (waypoints.length > 2) {
-            directions.waypoints =
-                waypoints.slice(1, waypoints.length - 1).map(function(waypoint) {
-                    return {
-                      location: waypoint.latLng.lat + ',' + waypoint.latLng.lng,
-                      stopover: false
-                    };
-                });
+        directions.waypoints =
+            waypoints.slice(1, waypoints.length - 1).map(function(waypoint) {
+                return {
+                  location: waypoint.latLng.lat + ',' + waypoint.latLng.lng,
+                  stopover: false
+                };
+            });
         }
         
         this.directionsService.route(directions, function(result, status) {
