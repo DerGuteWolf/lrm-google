@@ -1,6 +1,6 @@
 L.Routing = L.Routing || {};
 L.Routing.Google = L.Class.extend({
-    //options: {},
+    options: {},
     initialize: function(options) {
     	this.options =  L.extend(this.options, {
            travelMode: google.maps.TravelMode.DRIVING,
