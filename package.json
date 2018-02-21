@@ -1,0 +1,29 @@
+{
+  "name": "lrm-google",
+  "version": "1.0.1",
+  "description": "Support for Google Directions API in Leaflet Routing Machine",
+  "main": "lrm-google.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uniqby/lrm-google.git"
+  },
+  "dependencies": {
+    "@mapbox/corslite": "0.0.7",
+    "@mapbox/polyline": "^0.2.0",
+    "osrm-text-instructions": "^0.11.5"
+  },
+  "keywords": [
+    "leaflet",
+    "google",
+    "routing"
+  ],
+  "author": "Alexander Sazanovich <alexander@uniq.by>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uniqby/lrm-google/issues"
+  },
+  "homepage": "https://github.com/uniqby/lrm-google#readme"
+}
