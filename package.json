@@ -11,9 +11,7 @@
     "url": "git+https://github.com/uniqby/lrm-google.git"
   },
   "dependencies": {
-    "@mapbox/corslite": "0.0.7",
-    "@mapbox/polyline": "^0.2.0",
-    "osrm-text-instructions": "^0.11.5"
+    "@mapbox/polyline": "^0.2.0"
   },
   "keywords": [
     "leaflet",

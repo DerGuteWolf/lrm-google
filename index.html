@@ -14,7 +14,7 @@
     <script src="bower_components/polyline/src/polyline.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzZr6EP9bOB9YuBRS8sFDzFJiHCyOaCME"></script>
     <script src="lrm-google.js"></script>
-    
+
 	<script>
 		var map = L.map('map').fitBounds(L.latLngBounds(L.latLng(1.24005, 103.60071), L.latLng(1.48027, 104.03685)));
 
@@ -25,13 +25,13 @@
 				'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 			id: 'kahkhang.n5i9gb4m'
 		}).addTo(map);
-        
+
         L.Routing.control({
           waypoints: [
             L.latLng(1.350794, 103.835950),
             L.latLng(1.392755, 103.913670)
           ],
-          router: L.Routing.google(),
+          router: new L.Routing.Google(),
           lineOptions: {
                 styles: [
                     {color: 'black', opacity: 0.3, weight: 11},
