@@ -6,17 +6,20 @@ For more information on the use of this router, the [Leaflet Routing Machine tut
 
 ## Installing lrm-graphhopper
 
-Use Bower to install the lrm-google package.
+Use npm to install the lrm-google package.
 
 ```sh
-bower install --save lrm-google
+npm install --save lrm-google
 ```
 
 Include the appropriate javascript dependencies in your html file.
 
 ```html
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<YOUR GOOGLE DIRECTIONS API KEY HERE>"></script>
-<script src="bower_components/lrm-google/lrm-google.js"></script>
+```
+
+```js
+require("lrm-google");
 ```
 
 ## Using lrm-google
@@ -31,7 +34,7 @@ L.Routing.control({
     L.latLng(1.350794, 103.835950),
     L.latLng(1.392755, 103.913670)
   ],
-  router: L.Routing.google(),
+  router: new L.Routing.Google(),
   lineOptions: {
         styles: [
             {color: 'black', opacity: 0.3, weight: 11},
@@ -50,7 +53,7 @@ L.Routing.control({
     L.latLng(1.350794, 103.835950),
     L.latLng(1.392755, 103.913670)
   ],
-  router: L.Routing.google({
+  router: new L.Routing.Google({
     travelMode: google.maps.TravelMode.TRANSIT,
     unitSystem: google.maps.UnitSystem.METRIC,
     provideRouteAlternatives: true
@@ -64,7 +67,3 @@ L.Routing.control({
     }
 }).addTo(map);
 ```
-
-##Demo
-
-See the [Demo](http://kahkhang.github.io/lrm-google/) for an example of usage.
