@@ -4,25 +4,15 @@ Extends [Leaflet Routing Machine](https://github.com/perliedman/leaflet-routing-
 
 For more information on the use of this router, the [Leaflet Routing Machine tutorial on alternative routers](http://www.liedman.net/leaflet-routing-machine/tutorials/alternative-routers/) is recommended.
 
-## Installing lrm-graphhopper
+## Installing
 
-Use npm to install the lrm-google package.
+Use npm to install the lrm-google-router package.
 
 ```sh
-npm install --save lrm-google
+npm install --save lrm-google-router
 ```
 
-Include the appropriate javascript dependencies in your html file.
-
-```html
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<YOUR GOOGLE DIRECTIONS API KEY HERE>"></script>
-```
-
-```js
-require("lrm-google");
-```
-
-## Using lrm-google
+## Using lrm-google-router
 
 You will need a valid Google Directions API in order to use this router.
 
