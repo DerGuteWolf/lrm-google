@@ -1,6 +1,6 @@
 {
   "name": "lrm-google-router",
-  "version": "1.2",
+  "version": "1.2.0",
   "description": "Support for Google Directions API in Leaflet Routing Machine",
   "main": "lrm-google.js",
   "scripts": {
