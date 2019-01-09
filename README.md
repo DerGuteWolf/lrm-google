@@ -68,7 +68,3 @@ L.Routing.control({
 ##Demo
 
 See the [Demo](http://kahkhang.github.io/lrm-google/) for an example of usage.
-
-##Known issues
-
-The displayed icons of instruction steps do not correspond to the direction of the instruction (Working on that).
