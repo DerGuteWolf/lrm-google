@@ -112,8 +112,8 @@ L.Routing.Google = L.Class.extend({
                         indices.push(indicesSecondary);
 
                         for (var j = 0; j < route.legs[i].via_waypoints.length; j++) {
-                            si = route.legs[i].via_waypoint[j].step_index;
-                            sp = route.legs[i].via_waypoint[j].step_interpolation;
+                            var si = route.legs[i].via_waypoint[j].step_index;
+                            var sp = route.legs[i].via_waypoint[j].step_interpolation;
 
                             waypointIndices[nWaypoint] = indicesSecondary[si] + Math.floor(stepsPoints[si]*sp);
                             nWaypoint++;
