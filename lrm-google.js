@@ -17,7 +17,7 @@ L.Routing.Google = L.Class.extend({
         return arr;
     },
     _decodePolyline: function(geometry) {
-            var coords = polyline.decode(geometry, 5),
+            var coords = L.PolylineUtil.decode?L.PolylineUtil.decode(geometry, 5):polyline.decode(geometry, 5),
                 latlngs = new Array(coords.length),
                 i;
             for (i = 0; i < coords.length; i++) {
