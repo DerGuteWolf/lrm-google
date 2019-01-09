@@ -1,12 +1,13 @@
-var directionsService = new google.maps.DirectionsService();
 L.Routing = L.Routing || {};
 L.Routing.Google = L.Class.extend({
-    options: {
-        travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.METRIC,
-        provideRouteAlternatives: true
-    },
+    options: {},
     initialize: function(options) {
+    	this.options =  L.extend(this.options, {
+           travelMode: google.maps.TravelMode.DRIVING,
+           unitSystem: google.maps.UnitSystem.METRIC,
+           provideRouteAlternatives: true
+    	});
+    	this.directionsService = new google.maps.DirectionsService();
         L.Util.setOptions(this, options);
     },
     _flatten: function(arrs) {
@@ -27,20 +28,21 @@ L.Routing.Google = L.Class.extend({
 		},
     route: function(waypoints, callback, context, options) {
         var that = this;
-        var directions = this.options;
+        var directions =  L.extend({}, this.options);
+        if (options.geometryOnly) {
+          directions.provideRouteAlternatives = false;
+        }
         directions.origin = waypoints[0].latLng.lat + ',' + waypoints[0].latLng.lng;
         directions.destination = waypoints[waypoints.length - 1].latLng.lat + ',' + waypoints[waypoints.length - 1].latLng.lng;
-        if (waypoints.length > 2) {
-            directions.waypoints =
-                waypoints.slice(1, waypoints.length - 1).map(function(waypoint) {
-                    return {
-                      location: waypoint.latLng.lat + ',' + waypoint.latLng.lng,
-                      stopover: false
-                    };
-                });
-        }
+        directions.waypoints =
+            waypoints.slice(1, waypoints.length - 1).map(function(waypoint) {
+                return {
+                  location: waypoint.latLng.lat + ',' + waypoint.latLng.lng,
+                  stopover: false
+                };
+            });
         
-        directionsService.route(directions, function(result, status) {
+        this.directionsService.route(directions, function(result, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             callback.call(context || callback, null, result.routes.map(function(route) {
                 var iroute = {}, i, j, step;
@@ -79,19 +81,21 @@ L.Routing.Google = L.Class.extend({
                 iroute.waypointIndices = [0, iroute.coordinates.length - 1];
                 //for(i = 0; i < iroute.actualWaypoints; i++) iroute.waypointIndices.push(i);
 
-                iroute.instructions = [];
-                for(i = 0; i < route.legs.length; i++)
-                  for(j = 0; j < route.legs[i].steps.length; j++){
-                    step = route.legs[i].steps[j];
-                    iroute.instructions.push({
-            					type: 'Straight',
-            					text: step.instructions.replace(/<(?:.|\n)*?>/gm, ''),
-            					distance: step.distance.value,
-            					time:  step.duration.value,
-            					index: indices[i][j],
-            					exit: null//instr.exit_number
-            				});
-                  }
+		if (!options.geometryOnly) {
+                  iroute.instructions = [];
+                  for(i = 0; i < route.legs.length; i++)
+                    for(j = 0; j < route.legs[i].steps.length; j++){
+                      step = route.legs[i].steps[j];
+                      iroute.instructions.push({
+            					  type: 'Straight',
+            					  text: step.instructions.replace(/<(?:.|\n)*?>/gm, ''),
+            					  distance: step.distance.value,
+            					  time:  step.duration.value,
+            					  index: indices[i][j],
+            					  exit: null//instr.exit_number
+            				  });
+                    }
+		}
                 return iroute;
             }));
           }
