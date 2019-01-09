@@ -72,7 +72,7 @@ L.Routing.Google = L.Class.extend({
 
         this.directionsService.route(directions, function(result, status) {
             if (status == google.maps.DirectionsStatus.OK) {
-                r = result.routes.map(function(route) {
+                var r = result.routes.map(function(route) {
                     var iroute = {}, i, j, step;
                     iroute.name = route.summary;
                     iroute.summary = {
@@ -104,7 +104,7 @@ L.Routing.Google = L.Class.extend({
 
                         for(j = 0; j < route.legs[i].steps.length; j++){
                             step = route.legs[i].steps[j];
-                            points = that._decodePolyline(step.polyline.points);
+                            var points = that._decodePolyline(step.polyline.points);
                             stepsPoints[j] = points.length;
                             indicesSecondary.push(iroute.coordinates.length);
                             iroute.coordinates = iroute.coordinates.concat(points);
